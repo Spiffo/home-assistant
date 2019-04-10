@@ -15,10 +15,13 @@ CONF_ENTITY_CONFIG = 'entity_config'
 CONF_FEATURE = 'feature'
 CONF_FEATURE_LIST = 'feature_list'
 CONF_FILTER = 'filter'
+CONF_LINKED_BATTERY_SENSOR = 'linked_battery_sensor'
+CONF_SAFE_MODE = 'safe_mode'
 
 # #### Config Defaults ####
 DEFAULT_AUTO_START = True
 DEFAULT_PORT = 51827
+DEFAULT_SAFE_MODE = False
 
 # #### Features ####
 FEATURE_ON_OFF = 'on_off'
@@ -111,6 +114,7 @@ CHAR_OUTLET_IN_USE = 'OutletInUse'
 CHAR_ON = 'On'
 CHAR_POSITION_STATE = 'PositionState'
 CHAR_ROTATION_DIRECTION = 'RotationDirection'
+CHAR_ROTATION_SPEED = 'RotationSpeed'
 CHAR_SATURATION = 'Saturation'
 CHAR_SERIAL_NUMBER = 'SerialNumber'
 CHAR_SMOKE_DETECTED = 'SmokeDetected'
@@ -127,6 +131,7 @@ CHAR_VALVE_TYPE = 'ValveType'
 # #### Properties ####
 PROP_MAX_VALUE = 'maxValue'
 PROP_MIN_VALUE = 'minValue'
+PROP_MIN_STEP = 'minStep'
 PROP_CELSIUS = {'minValue': -273, 'maxValue': 999}
 
 # #### Device Classes ####
@@ -146,3 +151,7 @@ DEVICE_CLASS_WINDOW = 'window'
 # #### Thresholds ####
 THRESHOLD_CO = 25
 THRESHOLD_CO2 = 1000
+
+# #### Default values ####
+DEFAULT_MIN_TEMP_WATER_HEATER = 40  # °C
+DEFAULT_MAX_TEMP_WATER_HEATER = 60  # °C

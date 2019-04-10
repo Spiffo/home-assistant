@@ -1,10 +1,4 @@
-"""
-Support for devices connected to UniFi POE.
-
-For more details about this platform, please refer to the documentation at
-https://home-assistant.io/components/unifi/
-"""
-
+"""Support for devices connected to UniFi POE."""
 import voluptuous as vol
 
 from homeassistant import config_entries
@@ -22,7 +16,7 @@ DEFAULT_PORT = 8443
 DEFAULT_SITE_ID = 'default'
 DEFAULT_VERIFY_SSL = False
 
-REQUIREMENTS = ['aiounifi==3']
+REQUIREMENTS = ['aiounifi==4']
 
 
 async def async_setup(hass, config):
@@ -32,19 +26,20 @@ async def async_setup(hass, config):
 
 async def async_setup_entry(hass, config_entry):
     """Set up the UniFi component."""
-    controller = UniFiController(hass, config_entry)
-
     if DOMAIN not in hass.data:
         hass.data[DOMAIN] = {}
+
+    controller = UniFiController(hass, config_entry)
+
     controller_id = CONTROLLER_ID.format(
         host=config_entry.data[CONF_CONTROLLER][CONF_HOST],
         site=config_entry.data[CONF_CONTROLLER][CONF_SITE_ID]
     )
 
+    hass.data[DOMAIN][controller_id] = controller
+
     if not await controller.async_setup():
         return False
-
-    hass.data[DOMAIN][controller_id] = controller
 
     if controller.mac is None:
         return True
