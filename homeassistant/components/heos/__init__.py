@@ -19,8 +19,6 @@ from .const import (
     COMMAND_RETRY_ATTEMPTS, COMMAND_RETRY_DELAY, DATA_CONTROLLER,
     DATA_SOURCE_MANAGER, DOMAIN, SIGNAL_HEOS_SOURCES_UPDATED)
 
-REQUIREMENTS = ['pyheos==0.3.1']
-
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.Schema({
         vol.Required(CONF_HOST): cv.string
@@ -197,7 +195,7 @@ class SourceManager:
                                       exc_info=isinstance(error, CommandError))
                         return
 
-        async def update_sources(event):
+        async def update_sources(event, data):
             if event in (const.EVENT_SOURCES_CHANGED,
                          const.EVENT_USER_CHANGED):
                 sources = await get_sources()
